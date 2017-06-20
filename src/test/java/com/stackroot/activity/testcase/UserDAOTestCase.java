@@ -11,11 +11,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.stackroot.activity.config.ApplicationContextConfig;
 import com.stackroot.activity.dao.UserDAO;
 import com.stackroot.activity.model.User;
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+
 @ComponentScan("com.stackroot")
+@ContextConfiguration(classes = {ApplicationContextConfig.class})
 public class UserDAOTestCase {
 
 @Autowired static AnnotationConfigApplicationContext context;
