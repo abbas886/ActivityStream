@@ -29,7 +29,7 @@ public class ApplicationContextConfig {
     	dataSource.setDriverClassName("com.mysql.jdbc.Driver");
     	dataSource.setUrl("jdbc:mysql://localhost:3306/activity_stream_db");
     	dataSource.setUsername("root");
-    	//dataSource.setPassword("root");
+    	dataSource.setPassword("root");
     	
     	return dataSource;
     }

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.stackroot.activity.dao.StreamDAO;
-import com.stackroot.activity.dao.UserStreamDAO;
 import com.stackroot.activity.model.Stream;
 
 
@@ -20,8 +19,6 @@ public class StreamDAOTestCase  {
 	@Autowired
 	static AnnotationConfigApplicationContext context;
 
-	@Autowired
-	static UserStreamDAO userStreamDAO;
 
 	@Autowired
 	static StreamDAO streamDAO;
@@ -34,9 +31,6 @@ public class StreamDAOTestCase  {
 		context = new AnnotationConfigApplicationContext();
 		context.scan("com.stackroot");
 		context.refresh();
-
-		// get the streamDAO from context
-		userStreamDAO = (UserStreamDAO) context.getBean("userStreamDAO");
 
 		streamDAO = (StreamDAO) context.getBean("streamDAO");
 
@@ -91,14 +85,14 @@ public class StreamDAOTestCase  {
 
 	@Test
 	public void getMessagesTestCase() {
-		displayAllStreams(userStreamDAO.getMyInbox("Dinesh"));
-		assertEquals(19, userStreamDAO.getMyInbox("Dinesh").size());
+		displayAllStreams(streamDAO.getMyInbox("Dinesh"));
+		assertEquals(19, streamDAO.getMyInbox("Dinesh").size());
 	}
 
 	@Test
 	public void getMessagesFromCircleTestCase() {
-		displayAllStreams(userStreamDAO.getMyCircleMessages("hobes"));
-		assertEquals(20, userStreamDAO.getMyCircleMessages("hobes").size());
+		displayAllStreams(streamDAO.getMyCircleMessages("hobes"));
+		assertEquals(20, streamDAO.getMyCircleMessages("hobes").size());
 
 	}
 

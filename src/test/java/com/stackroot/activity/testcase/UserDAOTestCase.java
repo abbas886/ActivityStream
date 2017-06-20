@@ -42,6 +42,7 @@ public class UserDAOTestCase {
 	}
 /**
  * will through DataIntegrityViolationException
+ * InvalidDataAccessResourceUsageException??
  */
 	@Test(expected = DataIntegrityViolationException.class)
 	public void createUserFailedTestCase() {

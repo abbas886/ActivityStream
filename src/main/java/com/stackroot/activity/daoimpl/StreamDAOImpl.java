@@ -112,38 +112,44 @@ public class StreamDAOImpl implements StreamDAO{
 	}
 
 		
-	/*private int getStreamByCircleID(String circleID)
-	{
-		StreamCircle streamCircle = (StreamCircle) getCurrentSession().createCriteria(StreamCircle.class)
-			.add(Restrictions.eq("circleID", circleID)).uniqueResult();
-		if(streamCircle==null)
-		{
-			return -1;
-		}
-		return streamCircle.getStreamID();
+	/**
+	 * select * from stream where receiver_id='Abbas' or sender_id='Abbas'
+	 or circle_id in (select circle_id from user_circle where user_id='Abbas')
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Stream> getMyInbox(String userID) {
+		logger.debug("getMyInbox: "+userID);
+		
+		List<Stream> streams =  getCurrentSession().createQuery("from Stream where receiverID=? or senderID=?"
+				+ " or circleID in (select circleID from UserCircle where userID=?)")
+				.setString(0, userID)
+				.setString(1, userID)
+				.setString(2, userID)
+				.setFirstResult(1)
+				.setMaxResults(10)
+				.list();
+		logger.debug("No. of messages : " + streams.size());
+		
+		
+		return streams;
 	}
-	*/
+    /**
+     * select * from Stream where ID in (select stream_ID from Stream_Circle where circle_ID='hobes')
+     */
+	@SuppressWarnings("unchecked")
+	public List<Stream> getMyCircleMessages(String circleID) {
+		logger.debug("getMessagesFromCircle: "+circleID);
+		List<Stream> streams =  getCurrentSession().createQuery("from Stream where ID in (select streamID from StreamCircle where circleID=?)")
+		.setString(0, circleID)
+		.setFirstResult(1)
+		.setMaxResults(10)
+		.list();
+		logger.debug("No. of messages : " + streams.size());
+		
+		return streams;
+	}
 
 	
-
-
-	/*public List<Stream> getMessages(String userID) {
-		
-		List<String> myCircles=  circleDAO.getMyCircles(userID);
-		List<Stream> allStreams = new ArrayList<Stream>();
-		List<Stream> circleStream;
-		for( String circleName : myCircles)
-		{
-			circleStream = getMessagesFromCircle(circleName);
-			if(circleStream!=null)
-			{
-				allStreams.addAll(circleStream);
-			}
-			
-		}
-		// TODO Auto-generated method stub
-		return allStreams;
-	}*/
 
 
 	

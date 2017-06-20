@@ -23,5 +23,9 @@ public interface StreamDAO {
 	public boolean sendMessageToUser(String userID,Stream stream);
 	
 	public boolean sendMessageToCircles(List<String> circleNames,Stream stream);
+	
+	
+	public List<Stream> getMyCircleMessages(String circleID);
+	public List<Stream> getMyInbox(String userID);
 
 }
