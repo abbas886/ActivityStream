@@ -40,9 +40,11 @@ public class UserDAOTestCase {
 		user = (User) context.getBean("user");
 
 	}
-
+/**
+ * will through DataIntegrityViolationException
+ */
 	@Test(expected = DataIntegrityViolationException.class)
-	public void createUserTestCase() {
+	public void createUserFailedTestCase() {
 		user.setId("Farooq");
 		user.setName("Farooq");
 		user.setPassword("Farooq");
