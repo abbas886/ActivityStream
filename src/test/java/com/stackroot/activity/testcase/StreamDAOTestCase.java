@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +15,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.stackroot.activity.config.ApplicationContextConfig;
@@ -21,10 +25,10 @@ import com.stackroot.activity.dao.StreamDAO;
 import com.stackroot.activity.dao.UserStreamDAO;
 import com.stackroot.activity.model.Stream;
 @RunWith(SpringJUnit4ClassRunner.class)
-
-@ComponentScan("com.stackroot")
-@ContextConfiguration(classes = {ApplicationContextConfig.class})
-public class StreamDAOTestCase {
+@ContextConfiguration
+@TransactionConfiguration
+@Transactional
+public class StreamDAOTestCase  extends AbstractTransactionalJUnit4SpringContextTests{
 
 @Autowired static AnnotationConfigApplicationContext context;
 	

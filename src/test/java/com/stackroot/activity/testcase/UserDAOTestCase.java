@@ -2,6 +2,8 @@ package com.stackroot.activity.testcase;
 
 import static org.junit.Assert.*;
 
+import javax.transaction.Transactional;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,16 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.stackroot.activity.config.ApplicationContextConfig;
 import com.stackroot.activity.dao.UserDAO;
 import com.stackroot.activity.model.User;
 @RunWith(SpringJUnit4ClassRunner.class)
-
-@ComponentScan("com.stackroot")
-@ContextConfiguration(classes = {ApplicationContextConfig.class})
-public class UserDAOTestCase {
+@ContextConfiguration
+@TransactionConfiguration
+@Transactional
+public class UserDAOTestCase extends AbstractTransactionalJUnit4SpringContextTests{
 
 @Autowired static AnnotationConfigApplicationContext context;
 	
