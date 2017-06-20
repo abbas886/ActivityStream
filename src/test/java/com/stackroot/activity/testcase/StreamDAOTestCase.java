@@ -7,23 +7,15 @@ import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.stackroot.activity.config.ApplicationContextConfig;
 import com.stackroot.activity.dao.StreamDAO;
 import com.stackroot.activity.dao.UserStreamDAO;
 import com.stackroot.activity.model.Stream;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ComponentScan("com.stackroot")
-@ContextConfiguration(classes = { ApplicationContextConfig.class })
-public class StreamDAOTestCase extends AbstractTransactionalJUnit4SpringContextTests {
+
+public class StreamDAOTestCase  {
 
 	@Autowired
 	static AnnotationConfigApplicationContext context;

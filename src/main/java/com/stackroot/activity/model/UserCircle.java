@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Table(name ="user_circle")
 public class UserCircle extends BaseDomain{
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO) 
+	@Id 
 	private int id;
 	
 	@Column(name="user_id")

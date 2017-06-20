@@ -4,21 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.dao.DataIntegrityViolationException;
 
-import com.stackroot.activity.config.ApplicationContextConfig;
 import com.stackroot.activity.dao.CircleDAO;
 import com.stackroot.activity.model.Circle;
-@RunWith(SpringJUnit4ClassRunner.class)
-@ComponentScan("com.stackroot")
-@ContextConfiguration(classes = {ApplicationContextConfig.class})
-public class CircleDAOTestCase  extends AbstractTransactionalJUnit4SpringContextTests{
+
+public class CircleDAOTestCase {
 
 @Autowired static AnnotationConfigApplicationContext context;
 	
@@ -48,7 +41,7 @@ public class CircleDAOTestCase  extends AbstractTransactionalJUnit4SpringContext
 		
 	}
 	
-	@Test
+	@Test(expected = DataIntegrityViolationException.class)
 	public void createCircleTestCase()
 	{
 		circle.setAdminID("Swamy");

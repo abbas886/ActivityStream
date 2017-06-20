@@ -17,7 +17,7 @@ import com.stackroot.activity.model.Stream;
 
 
 @Transactional
-@Repository("userHomeDAO")
+@Repository("userStreamDAO")
 public class UserStreamDAOImpl implements  UserStreamDAO{
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserStreamDAOImpl.class);
@@ -49,14 +49,15 @@ public class UserStreamDAOImpl implements  UserStreamDAO{
 	}*/
 	
 	/**
-	 * select * from user_home where user_id='Abbas' or sender_id='Abbas'
-	 *	or circle_id in (select circle_id from user_circle where user_id='Abbas')
+	 * select * from stream where receiver_id='Abbas' or sender_id='Abbas'
+	 or circle_id in (select circle_id from user_circle where user_id='Abbas')
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Stream> getMyInbox(String userID) {
 		logger.debug("getMyInbox: "+userID);
 		
-		List<Stream> streams =  getCurrentSession().createSQLQuery("select * from user_home where user_id=? or sender_id=? or circle_id in (select circle_id from user_circle where user_id=?)")
+		List<Stream> streams =  getCurrentSession().createSQLQuery("select * from stream where receiver_id=? or sender_id=?"
+				+ " or circle_id in (select circle_id from user_circle where user_id=?)")
 				.setString(0, userID)
 				.setString(1, userID)
 				.setString(2, userID)
@@ -68,11 +69,13 @@ public class UserStreamDAOImpl implements  UserStreamDAO{
 		
 		return streams;
 	}
-
+    /**
+     * select * from Stream where ID in (select stream_ID from Stream_Circle where circle_ID='hobes')
+     */
 	@SuppressWarnings("unchecked")
 	public List<Stream> getMyCircleMessages(String circleID) {
 		logger.debug("getMessagesFromCircle: "+circleID);
-		List<Stream> streams =  getCurrentSession().createQuery("from Stream where senderID in (select streamID from StreamCircle where circleID=?)")
+		List<Stream> streams =  getCurrentSession().createQuery("from Stream where ID in (select streamID from StreamCircle where circleID=?)")
 		.setString(0, circleID)
 		.setFirstResult(1)
 		.setMaxResults(10)

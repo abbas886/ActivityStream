@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Table(name ="stream_circle")
 public class StreamCircle extends BaseDomain{
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO) 
+	@Id
 	private int id;
 	
 	@Column(name ="stream_id")
