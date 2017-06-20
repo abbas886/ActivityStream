@@ -4,12 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.stackroot.activity.dao.UserDAO;
 import com.stackroot.activity.model.User;
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration
+@ComponentScan("com.stackroot")
 public class UserDAOTestCase {
 
 @Autowired static AnnotationConfigApplicationContext context;
@@ -19,7 +25,7 @@ public class UserDAOTestCase {
 	@Autowired  static User user;
 	
 	
-	
+	/*
 	@BeforeClass
 	public static void initialize()
 	{
@@ -34,7 +40,7 @@ public class UserDAOTestCase {
 		
 		user = (User)context.getBean("user");
 		
-	}
+	}*/
 	
 	@Test
 	public void createUserTestCase()
