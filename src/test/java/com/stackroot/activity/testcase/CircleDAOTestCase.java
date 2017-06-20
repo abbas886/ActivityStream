@@ -1,8 +1,6 @@
 package com.stackroot.activity.testcase;
 
-import static org.junit.Assert.*;
-
-import javax.transaction.Transactional;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,19 +8,16 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.stackroot.activity.config.ApplicationContextConfig;
 import com.stackroot.activity.dao.CircleDAO;
 import com.stackroot.activity.model.Circle;
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
-@TransactionConfiguration
-@Transactional
+@ComponentScan("com.stackroot")
+@ContextConfiguration(classes = {ApplicationContextConfig.class})
 public class CircleDAOTestCase  extends AbstractTransactionalJUnit4SpringContextTests{
 
 @Autowired static AnnotationConfigApplicationContext context;
@@ -36,7 +31,7 @@ public class CircleDAOTestCase  extends AbstractTransactionalJUnit4SpringContext
 	/**
 	 * This method is going execute before calling any one of test case
 	 * and will execute only once
-	 *//*
+	 */
 	@BeforeClass
 	public static void initialize()
 	{
@@ -51,7 +46,7 @@ public class CircleDAOTestCase  extends AbstractTransactionalJUnit4SpringContext
 		
 		circle = (Circle)context.getBean("circle");
 		
-	}*/
+	}
 	
 	@Test
 	public void createCircleTestCase()

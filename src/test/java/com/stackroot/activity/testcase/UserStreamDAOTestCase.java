@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,44 +11,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.stackroot.activity.config.ApplicationContextConfig;
 import com.stackroot.activity.dao.UserStreamDAO;
 import com.stackroot.activity.model.Stream;
-import com.stackroot.activity.model.Stream;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
-@TransactionConfiguration
-@Transactional
-public class UserStreamDAOTestCase extends AbstractTransactionalJUnit4SpringContextTests {
+@ComponentScan("com.stackroot")
+@ContextConfiguration(classes = {ApplicationContextConfig.class})
+public class UserStreamDAOTestCase {
 
 @Autowired static AnnotationConfigApplicationContext context;
 	
-	@Autowired  static UserStreamDAO  userHomeDAO;
+	@Autowired  static UserStreamDAO  userStreamDAO;
 	
 	@Autowired  static Stream stream;
 	
-/*	@BeforeClass
+	@BeforeClass
 	public static void initialize()
 	{
 		context = new AnnotationConfigApplicationContext();
 		context.scan("com.stackroot");
 		context.refresh();
 		
-		userHomeDAO =  (UserStreamDAO) context.getBean("userHomeDAO");
+		userStreamDAO =  (UserStreamDAO) context.getBean("userStreamDAO");
 		
 		
 		stream = (Stream)context.getBean("stream");
-	}*/
+	}
 	
 	
 	//@Test
 	public void getUserHomeTestCase()
 	{
-		List<Stream> stream = userHomeDAO.getMyInbox("Dinesh");
+		List<Stream> stream = userStreamDAO.getMyInbox("Dinesh");
 		System.out.println("User home streams");
 		displayStreams(stream);
 		assertEquals(28,  stream.size());
@@ -61,7 +56,7 @@ public class UserStreamDAOTestCase extends AbstractTransactionalJUnit4SpringCont
 	//@Test
 	public void getUserHomeByCircleIDTestCase()
 	{
-		List<Stream> streams = userHomeDAO.getMyCircleMessages("hobes");
+		List<Stream> streams = userStreamDAO.getMyCircleMessages("hobes");
 		System.out.println("Circle strems");
 		displayStreams(streams);
 		assertEquals(28,  streams.size());
@@ -72,7 +67,7 @@ public class UserStreamDAOTestCase extends AbstractTransactionalJUnit4SpringCont
 	@Test
 	public void getStreamByUserIDAndRangeTestCase()
 	{
-		List<Stream> streams = userHomeDAO.getMyInbox("Farooq", 1,10);
+		List<Stream> streams = userStreamDAO.getMyInbox("Farooq", 1,10);
 		
 		assertTrue(streams.size() <=10);
 		
@@ -85,7 +80,7 @@ public class UserStreamDAOTestCase extends AbstractTransactionalJUnit4SpringCont
 	@Test
 	public void getStreamByCircleIDAndRangeTestCase()
 	{
-		List<Stream> streams = userHomeDAO.getMyCircleMessages("gitlab", 1,10);
+		List<Stream> streams = userStreamDAO.getMyCircleMessages("gitlab", 1,10);
 		
 		assertTrue(streams.size() <=10);
 		

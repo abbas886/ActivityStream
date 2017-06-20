@@ -1,8 +1,7 @@
 package com.stackroot.activity.testcase;
 
-import static org.junit.Assert.*;
-
-import javax.transaction.Transactional;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -13,15 +12,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.stackroot.activity.config.ApplicationContextConfig;
 import com.stackroot.activity.dao.UserDAO;
 import com.stackroot.activity.model.User;
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
-@TransactionConfiguration
-@Transactional
+@ComponentScan("com.stackroot")
+@ContextConfiguration(classes = {ApplicationContextConfig.class})
 public class UserDAOTestCase extends AbstractTransactionalJUnit4SpringContextTests{
 
 @Autowired static AnnotationConfigApplicationContext context;
@@ -31,7 +28,7 @@ public class UserDAOTestCase extends AbstractTransactionalJUnit4SpringContextTes
 	@Autowired  static User user;
 	
 	
-	/*
+	
 	@BeforeClass
 	public static void initialize()
 	{
@@ -46,7 +43,7 @@ public class UserDAOTestCase extends AbstractTransactionalJUnit4SpringContextTes
 		
 		user = (User)context.getBean("user");
 		
-	}*/
+	}
 	
 	@Test
 	public void createUserTestCase()
