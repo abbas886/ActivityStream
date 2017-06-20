@@ -28,7 +28,7 @@ CREATE TABLE `stream` (
   `id` int(11) NOT NULL,
   `parent_id` varchar(20) DEFAULT NULL,
   `sender_id` varchar(20) DEFAULT NULL,
-  `posted_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `posted_date` datetime ,
   `stream_type` varchar(20) NOT NULL,
   `tag` varchar(20) NOT NULL,
   `message` varchar(200) DEFAULT NULL,

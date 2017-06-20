@@ -29,7 +29,7 @@ CREATE TABLE `circle` (
   `name` varchar(30) DEFAULT NULL,
   `admin_id` varchar(20) DEFAULT NULL,
   `status` char(1) DEFAULT 'A',
-  `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `created_date` datetime ,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
