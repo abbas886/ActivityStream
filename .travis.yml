@@ -1,0 +1,10 @@
+language: java
+jdk:
+  - openjdk8
+  - oraclejdk8
+services:
+  - mysql
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS activity_stream_db;'
+  - cat ./schema/*.sql | mysql
+  
