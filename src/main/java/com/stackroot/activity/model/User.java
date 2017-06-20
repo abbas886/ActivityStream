@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name="User")
+@Table(name="user")
 public class User extends BaseDomain {
 	
 	@Id

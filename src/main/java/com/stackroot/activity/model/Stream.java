@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name="Stream")
+@Table(name="stream")
 public class Stream extends BaseDomain{
 	
 	@Id 

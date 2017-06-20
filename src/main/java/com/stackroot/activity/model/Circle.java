@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 @Entity
-@Table(name = "Circle")
+@Table(name = "circle")
 public class Circle extends BaseDomain {
 
 	@Id
