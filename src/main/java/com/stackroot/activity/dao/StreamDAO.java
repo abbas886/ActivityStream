@@ -8,14 +8,6 @@ import com.stackroot.activity.model.Stream;
 
 public interface StreamDAO {
 	
-	//public List<Stream> getMessagesFromCircles(List<String> circleNames);
-	
-	/*public List<Stream> getMessagesFromCircle(String circleName); 
-	
-	public List<Stream> getMessages(String userID); 
-	*/
-	
-	// not using...need to remove
 	public boolean sendMessageToCircle(String circleName,Stream stream);
 	
 	public boolean sendMessage(Stream stream);
@@ -27,5 +19,8 @@ public interface StreamDAO {
 	
 	public List<Stream> getMyCircleMessages(String circleID);
 	public List<Stream> getMyInbox(String userID);
+	
+	public List<Stream> getMyCircleMessages(String circleID,int firstResult, int maxResult);
+	public List<Stream> getMyInbox(String userID,int firstResult, int maxResult);
 
 }
